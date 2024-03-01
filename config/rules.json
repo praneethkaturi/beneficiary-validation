@@ -1,0 +1,150 @@
+{
+    "INR": {
+        "GeneralRules": [
+            {
+                "Field": "StreetAddress",
+                "Type": "Required"
+            },
+
+            {
+                "Field": "Pincode",
+                "Type": "Required"
+            },
+
+            {
+                "Field": "Name",
+                "Type": "ValidateLength",
+                "MinLength": 1,
+                "MaxLength": 255
+            },
+            {
+                "Field": "AccountNumber",
+                "Type": "ValidateLength",
+                "MinLength": 14,
+                "MaxLength": 14
+            },
+            {
+                "Field": "RoutingNumber",
+                "Type": "ValidateLength",
+                "MinLength": 11,
+                "MaxLength": 11
+            },
+            {
+                "Field": "StreetAddress",
+                "Type": "ValidateLength",
+                "MinLength": 1,
+                "MaxLength": 255
+            },
+            {
+                "Field": "Pincode",
+                "Type": "ValidateRegex",
+                "Regex": "^[0-9]{6}"
+            },
+            {
+                "Field": "RoutingType",
+                "Type": "ValidateEnum",
+                "EnumValues": ["IFSC"]
+            }
+        ],
+        "ConditionalRules": []
+    },
+
+    "USD": {
+        "GeneralRules": [
+            {
+                "Field": "Name",
+                "Type": "ValidateLength",
+                "MinLength": 1,
+                "MaxLength": 140
+            },
+            {
+                "Field": "RoutingType",
+                "Type": "ValidateEnum",
+                "EnumValues": ["ACH", "SWIFT"]
+            }
+        ],
+        "ConditionalRules": [
+            {
+                "Conditions": [
+                    {
+                        "Field": "RoutingType",
+                        "Value": "ACH"
+                    }
+                ],
+                "Rules": [
+                    {
+                        "Field": "StreetAddress",
+                        "Type": "Required"
+                    },
+
+                    {
+                        "Field": "AccountNumber",
+                        "Type": "ValidateLength",
+                        "MinLength": 14,
+                        "MaxLength": 14
+                    },
+                    {
+                        "Field": "RoutingNumber",
+                        "Type": "Regex",
+                        "Regex": "(^[0-9]{8}$|^[0-9]{10}$)"
+                    },
+                    {
+                        "Field": "Pincode",
+                        "Type": "ValidateLength",
+                        "MinLength": 4,
+                        "MaxLength": 4
+                    },
+                    {
+                        "Field": "StreetAddress",
+                        "Type": "ValidateLength",
+                        "MinLength": 1,
+                        "MaxLength": 255
+                    }
+                ]
+            },
+            {
+                "Conditions": [
+                    {
+                        "Field": "RoutingType",
+                        "Value": "SWIFT"
+                    }
+                ],
+                "Rules": [
+                    {
+                        "Field": "StreetAddress",
+                        "Type": "Required"
+                    },
+
+                    {
+                        "Field": "Pincode",
+                        "Type": "Required"
+                    },
+
+                    {
+                        "Field": "AccountNumber",
+                        "Type": "ValidateLength",
+                        "MinLength": 11,
+                        "MaxLength": 11
+                    },
+                    {
+                        "Field": "RoutingNumber",
+                        "Type": "ValidateLength",
+                        "MinLength": 8,
+                        "MaxLength": 8
+                    },
+                    {
+                        "Field": "Pincode",
+                        "Type": "ValidateRegex",
+                        "Regex": "^[0-9]{4}"
+                    },
+                    {
+                        "Field": "StreetAddress",
+                        "Type": "ValidateLength",
+                        "MinLength": 1,
+                        "MaxLength": 140
+                    }
+                ]
+            }
+        ]
+    }
+}
