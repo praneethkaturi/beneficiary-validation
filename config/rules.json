@@ -85,8 +85,8 @@
                     },
                     {
                         "Field": "RoutingNumber",
-                        "Type": "Regex",
-                        "Regex": "(^[0-9]{8}$|^[0-9]{10}$)"
+                        "Type": "ValidateRegex",
+                        "Regex": "^[0-9]{8}$|^[0-9]{11}$"
                     },
                     {
                         "Field": "Pincode",
@@ -135,7 +135,7 @@
                     {
                         "Field": "Pincode",
                         "Type": "ValidateRegex",
-                        "Regex": "^[0-9]{4}"
+                        "Regex": "^[0-9]{4}$"
                     },
                     {
                         "Field": "StreetAddress",
